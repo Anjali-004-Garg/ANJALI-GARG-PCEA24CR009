@@ -1,0 +1,51 @@
+1.db.members.insertMany([
+  {
+    name: "Arjun",
+    address: { street: "12 MG Road", city: "Chennai", pincode: "600001" },
+    borrowed: ["MongoDB Guide", "Python Basics"],
+    feeOwed: 0
+  },
+  {
+    name: "Sita",
+    address: { street: "45 Park Street", city: "Mumbai", pincode: "400001" },
+    borrowed: ["MongoDB Guide"],
+    feeOwed: 15
+  },
+  {
+    name: "Rahul",
+    address: { street: "78 Brigade Road", city: "Bengaluru", pincode: "560001" },
+    borrowed: [],
+    feeOwed: 5
+  },
+  {
+    name: "Priya",
+    address: { street: "9 Anna Salai", city: "Chennai", pincode: "600002" },
+    borrowed: ["Data Structures", "Python Basics", "MongoDB Guide"],
+    feeOwed: 0
+  }
+]);
+
+show dbs;
+show collections;
+
+ 2. 
+db.members.find({ "address.city": "Chennai" });
+
+ 3.
+db.members.find({ borrowed: "MongoDB Guide" });
+
+ 4.
+db.members.find({ borrowed: { $all: ["Python Basics", "MongoDB Guide"] } });
+
+ 5.
+db.members.find({ borrowed: { $size: 0 } });
+
+ 6.
+db.members.updateOne(
+  { name: "Sita" },
+  { $set: { "address.city": "Chennai" } }
+);
+
+ 7.
+db.members.countDocuments({ feeOwed: { $gt: 0 } });
+db.members.drop();
