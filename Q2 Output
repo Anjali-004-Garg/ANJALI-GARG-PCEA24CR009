@@ -1,0 +1,41 @@
+Output:
+1. {
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('...'),
+    '1': ObjectId('...'),
+    '2': ObjectId('...'),
+    '3': ObjectId('...'),
+    '4': ObjectId('...'),
+    '5': ObjectId('...')
+  }
+}
+2. 
+
+  { orderId: 'ORD-101', product: 'Wireless Mouse' },
+  { orderId: 'ORD-103', product: 'Mechanical Keyboard' },
+  { orderId: 'ORD-105', product: 'USB-C Hub' }
+
+3.
+
+  { orderId: 'ORD-101', product: 'Wireless Mouse', lineTotal: 50 },
+  { orderId: 'ORD-102', product: 'Desk Lamp', lineTotal: 45 },
+  { orderId: 'ORD-103', product: 'Mechanical Keyboard', lineTotal: 120 },
+  { orderId: 'ORD-104', product: 'Notebook Pack', lineTotal: 50 },
+  { orderId: 'ORD-105', product: 'USB-C Hub', lineTotal: 105 },
+  { orderId: 'ORD-106', product: 'Ergonomic Chair', lineTotal: 250 }
+
+
+4.
+  { _id: 'Electronics', totalQuantity: 6 },
+  { _id: 'Furniture', totalQuantity: 2 },
+  { _id: 'Stationery', totalQuantity: 5 }
+
+5.
+  { _id: 'Furniture', totalRevenue: 295, averagePrice: 147.5 },
+  { _id: 'Electronics', totalRevenue: 275, averagePrice: 60 },
+  { _id: 'Stationery', totalRevenue: 50, averagePrice: 10 }
+
+6.
+  { _id: 'Bob', totalSpend: 295 },
+  { _id: 'Alice', totalSpend: 170 }
