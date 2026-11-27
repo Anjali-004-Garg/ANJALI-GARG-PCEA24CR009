@@ -1,0 +1,64 @@
+1.db.orders.insertMany([
+  { orderId: "ORD-101", customer: "Alice", category: "Electronics", product: "Wireless Mouse", qty: 2, price: 25 },
+  { orderId: "ORD-102", customer: "Bob", category: "Furniture", product: "Desk Lamp", qty: 1, price: 45 },
+  { orderId: "ORD-103", customer: "Alice", category: "Electronics", product: "Mechanical Keyboard", qty: 1, price: 120 },
+  { orderId: "ORD-104", customer: "Charlie", category: "Stationery", product: "Notebook Pack", qty: 5, price: 10 },
+  { orderId: "ORD-105", customer: "Diana", category: "Electronics", product: "USB-C Hub", qty: 3, price: 35 },
+  { orderId: "ORD-106", customer: "Bob", category: "Furniture", product: "Ergonomic Chair", qty: 1, price: 250 }
+]);
+2.db.orders.aggregate([
+  {
+    $match: { category: "Electronics" }
+  },
+  {
+    $project: {
+      _id: 0,
+      orderId: 1,
+      product: 1
+    }
+  }
+]);
+3.db.orders.aggregate([
+  {
+    $project: {
+      _id: 0,
+      orderId: 1,
+      product: 1,
+      lineTotal: { $multiply: ["$qty", "$price"] }
+    }
+  }
+]);
+4. db.orders.aggregate([
+  {
+    $group: {
+      _id: "$category",
+      totalQuantity: { $sum: "$qty" }
+    }
+  }
+]);
+5.db.orders.aggregate([
+  {
+    $group: {
+      _id: "$category",
+      totalRevenue: { $sum: { $multiply: ["$qty", "$price"] } },
+      averagePrice: { $avg: "$price" }
+    }
+  },
+  {
+    $sort: { totalRevenue: -1 }
+  }
+]);
+6.db.orders.aggregate([
+  {
+    $group: {
+      _id: "$customer",
+      totalSpend: { $sum: { $multiply: ["$qty", "$price"] } }
+    }
+  },
+  {
+    $sort: { totalSpend: -1 }
+  },
+  {
+    $limit: 2
+  }
+]);
